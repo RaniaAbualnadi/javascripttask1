@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #txtSongName {
+        width: 20%;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        padding: 7px;
+      }
+
+      .borderstyle {
+        border: 1px solid rgb(206 206 206);
+        background-color: gray;
+        padding: 0.5em;
+        background: rgb(235, 235, 237);
+        background: linear-gradient(
+          0deg,
+          rgba(235, 235, 237, 1) 0%,
+          rgba(188, 188, 188, 0.8970938717283788) 40%,
+          rgba(218, 228, 230, 1) 100%
+        );
+        border-radius: 6px;
+        margin-bottom: 5px;
+        font-size: 17px;
+      }
+      ul li {
+        list-style-type: none;
+      }
+
+      .delete-btn {
+        width: 22px;
+        height: 22px;
+        box-shadow: 0px 0px 4px 2px #6e686899;
+        padding: 7px;
+        display: inline-block;
+        margin-right: 10px;
+        border-radius: 6px;
+        background-color: #ddd;
+        color: #d85f5f;
+        background: rgb(255, 183, 190);
+        background: linear-gradient(
+          0deg,
+          rgb(255 234 236) 0%,
+          rgba(251, 238, 239, 0.8970938717283788) 40%,
+          rgb(255 204 204 / 70%) 100%
+        );
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+      integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <input type="text" placeholder="Song name" id="txtSongName" />
+    <input type="button" value=" Add song" id="btnAdd" />
+
+    <ul id="listContainer">
+      <li class="borderstyle">
+        <div class="delete-btn" onclick="deleteItem(this)">
+          <i class="fas fa-eraser"></i>
+        </div>
+        My Favorite song
+      </li>
+      <li class="borderstyle">
+        <div class="delete-btn" onclick="deleteItem(this)">
+          <i class="fas fa-eraser"></i>
+        </div>
+        My second Favorite song
+      </li>
+      <li class="borderstyle">
+        <div class="delete-btn" onclick="deleteItem(this)">
+          <i class="fas fa-eraser"></i>
+        </div>
+        I like this one
+      </li>
+    </ul>
+    <script>
+      // define event listener.
+      const BtnAdd = document.querySelector("#btnAdd");
+      BtnAdd.addEventListener("click", AddNew);
+      initial();
+
+      function AddNew() {
+        const newListItem = document.createElement("li");
+        newListItem.innerHTML =
+          '<div class="delete-btn" onclick="deleteItem(this)"><i class="fas fa-eraser"></i></div>' +
+          document.getElementById("txtSongName").value;
+        newListItem.classList.add("borderstyle");
+        document.getElementById("listContainer").appendChild(newListItem);
+        document.getElementById("txtSongName").value = "";
+      }
+
+      function deleteItem(item) {
+        document
+          .getElementById("listContainer")
+          .removeChild(item.parentElement);
+      }
+
+      function initial() {
+        let input = document.getElementById("txtSongName");
+        input.addEventListener("keyup", function (event) {
+          if (event.keyCode === 13) {
+            AddNew();
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

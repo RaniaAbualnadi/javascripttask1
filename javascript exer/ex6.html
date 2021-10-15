@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #divCollapseBody {
+        display: none;
+      }
+      .collapse-container {
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+      }
+
+      .collapse-header {
+        background-color: #c0b9b9;
+        padding: 5px;
+        border-radius: 5px 5px 0px 0px;
+      }
+
+      .collapse-body {
+        border-style: solid;
+        border-width: 1px;
+        border-color: #ddd;
+        transition: 1s;
+        height: 05em;
+        overflow: hidden;
+        padding: 5px;
+      }
+      #show {
+        display: flex;
+        flex-direction: row;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="collapse-container">
+      <div class="collapse-header">
+        <p>What is lorem?</p>
+        <p id="show" onclick="collapseBody()">show</p>
+      </div>
+      <div class="collapse-body" id="divCollapseBody">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse facilis
+        architecto quae suscipit culpa sapiente maiores porro quo! Deserunt eum
+        fugiat illum praesentium repellendus beatae magni assumenda esse in
+        incidunt!
+
+        <a id="hide" onclick="hideBody()"> Hide </a>
+      </div>
+    </div>
+
+    <script>
+      function collapseBody() {
+        let x = document.getElementById("divCollapseBody");
+        let y = document.getElementById("show");
+        if (x.style.display === "none") {
+          x.style.display = "block";
+          y.style.display = "none";
+        } else {
+          x.style.display = "none";
+          y.style.display = "blcok";
+        }
+      }
+
+      function hideBody() {
+        let x = document.getElementById("divCollapseBody");
+        let y = document.getElementById("hide");
+        let z = document.getElementById("show");
+        if (x.style.display === "block") {
+          x.style.display = "none";
+          y.style.display = "block";
+          z.style.display = "block";
+        } else {
+          x.style.display = "block";
+          y.style.display = "none";
+        }
+      }
+
+      //   function hideBody() {
+      //     let x = document.getElementById("divCollapseBody");
+      //     let y = document.getElementById("show");
+      //     if (x.style.display === "block") {
+      //       x.style.display = "none";
+      //       y.style.display = "block";
+      //     } else {
+      //       x.style.display = "block";
+      //       y.style.display = "none";
+      //     }
+      //   }
+    </script>
+  </body>
+</html>

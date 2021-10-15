@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #cont1 {
+        border: 3px solid black;
+        width: 30%;
+        padding: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <select name="country" id="texttype" form="conform" onchange="changeFont()">
+      <option value="default">Select</option>
+      <option value="cursive">cursive</option>
+      <option value="sans-serif">sans-serif</option>
+      <option value="monospace">monospace</option>
+    </select>
+    <select id="selectFontSize" onchange="setFontSize()"></select>
+    <div>
+      <label for="italic">italic</label>
+      <input type="checkbox" id="italic" name="italic" onclick="setItalic()" />
+    </div>
+
+    <div>
+      <label for="bold">Bold</label>
+      <input type="checkbox" id="bold" name="bold" onclick="myFunction1()" />
+    </div>
+
+    <div>
+      <p id="cont1">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde,
+        corrupti.
+      </p>
+    </div>
+
+    <script>
+      function myFunction1() {
+        let checkBox = document.getElementById("bold");
+        let text = document.getElementById("cont1");
+        if (checkBox.checked == true) {
+          text.style.fontWeight = "Bolder";
+        } else {
+          text.style.fontWeight = "Normal";
+        }
+      }
+      function setItalic() {
+        let checkBox = document.getElementById("italic");
+        let text = document.getElementById("cont1");
+        if (checkBox.checked == true) {
+          text.style.fontStyle = "Italic";
+        } else {
+          text.style.fontStyle = "Normal";
+        }
+      }
+
+      function changeFont() {
+        let fontName = document.getElementById("texttype").value;
+        document.getElementById("cont1").style.fontFamily = fontName;
+      }
+
+      function setFontSize() {
+        let fontSize = document.getElementById("selectFontSize").value;
+        document.getElementById("cont1").style.fontSize = fontSize;
+      }
+
+      function fillFontSize() {
+        // get the select control
+        let selectFontSize = document.getElementById("selectFontSize");
+
+        // loop for the font sizes we want
+        for (let i = 8; i <= 22; i += 2) {
+          var opt = document.createElement("option");
+          opt.value = i + "pt";
+          opt.innerHTML = i + "pt";
+          // add the child to the select
+          selectFontSize.appendChild(opt);
+        }
+
+        document.getElementById("cont1").style.fontSize = "8pt";
+      }
+
+      // call the function on the page load to fill the list of font sizes
+      fillFontSize();
+    </script>
+  </body>
+</html>

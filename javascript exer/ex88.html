@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #container {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .coloBox {
+        width: 3em;
+        height: 3em;
+        background-color: gray;
+        border: 1px solid black;
+        margin: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+    <div id="colorResult"></div>
+  </body>
+
+  <script>
+    for (i = 0; i < 200; i++) {
+      let red = (i * 3) % 255;
+      let green = (i * 5) % 255;
+      let blue = (i * 7) % 255;
+      const colorDiv = document.createElement("div");
+      colorDiv.classList.add("coloBox");
+      colorDiv.style.backgroundColor =
+        "rgb(" + red + "," + green + "," + blue + ")";
+      colorDiv.setAttribute("onclick", "printColor(this)");
+      document.getElementById("container").appendChild(colorDiv);
+    }
+
+    function printColor(item) {
+      const colorResult = document.getElementById("colorResult");
+      colorResult.innerHTML = item.style.backgroundColor;
+      colorResult.style.backgroundColor = colorResult.innerHTML;
+    }
+  </script>
+</html>

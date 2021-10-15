@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .validation {
+        color: red;
+      }
+      .row-container {
+        display: flex;
+        align-items: center;
+      }
+      label {
+        flex-basis: 14em;
+      }
+      form {
+        width: 50%;
+        background-color: #d0d0d0;
+        border-radius: 5px;
+        padding: 10px;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- this is for calling the validation before submit (onsubmit="return checkPass()") -->
+    <form action="/action_page.php" onsubmit="return checkPass()">
+      <div class="row-container">
+        <label for="pass1">Password:</label>
+        <input type="text" id="pass1" name="password" onchange="checkPass()" />
+        <p id="alert" class="validation"></p>
+      </div>
+      <div class="row-container">
+        <label for="pass2">Repeat Password:</label>
+        <input
+          type="text"
+          id="pass2"
+          name="pass2"
+          placeholder="Password"
+          onchange="checkPass()"
+        />
+        <p id="alert2" class="validation"></p>
+      </div>
+      <input type="submit" id="submit" value="Send" hidden />
+    </form>
+
+    <script>
+      function checkPass() {
+        let pass1 = document.getElementById("pass1").value;
+        let pass2 = document.getElementById("pass2").value;
+        let message = document.getElementById("alert");
+        let message2 = document.getElementById("alert2");
+
+        // this (isValid flag) for preventing the submission if the conditions are not true.
+        let isValid = true;
+        if (pass1.length < 6) {
+          message.innerHTML = "Too short";
+          isValid = false;
+        } else {
+          message.innerHTML = "";
+        }
+
+        if (pass1 == pass2 && pass1.length >= 6) {
+          message2.innerHTML = "";
+          message.innerHTML = "";
+          // disaply the button
+          document
+            .getElementById("submit")
+            .attributes.removeNamedItem("hidden");
+        } else {
+          message2.innerHTML = "The two passwords don't match ";
+          isValid = false;
+        }
+        // if this returned as true continue the submit, else stop the submit.
+        return isValid;
+      }
+    </script>
+  </body>
+</html>
